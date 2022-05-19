@@ -1,0 +1,95 @@
+CREATE TABLE Cliente(
+  id_cliente SERIAL,
+  identificacion VARCHAR(45) NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
+  apellido VARCHAR(45) NOT NULL,
+  direccion VARCHAR(45) NOT NULL,
+  telefono VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idCliente));
+ALTER TABLE Cliente owner to user_node;
+
+CREATE TABLE Editorial (
+  id_editorial SERIAL,
+  nombre VARCHAR(200) NOT NULL,
+  pais VARCHAR(45) NOT NULL,
+  telefono VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id_editorial));
+ALTER TABLE Editorial owner to user_node;
+
+CREATE TABLE Prestamo(
+  id_prestamos SERIAL,
+  fecha_inicio DATE NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  id_cliente INT NOT NULL,
+  PRIMARY KEY (id_prestamos),
+  CONSTRAINT id_cliente
+    FOREIGN KEY (id_cliente)
+    REFERENCES Cliente (idCliente)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+ALTER TABLE Prestamo owner to user_node;
+
+CREATE TABLE Libro (
+  id_libro SERIAL,
+  titulo VARCHAR(200) NOT NULL,
+  fecha_publicacionl DATE NOT NULL,
+  codigo INT NOT NULL,
+  isbn CHAR(10) NOT NULL,
+  id_editorial INT NOT NULL,
+  PRIMARY KEY (id_libro),
+  CONSTRAINT id_editorial
+    FOREIGN KEY (id_editorial)
+    REFERENCES  Editorial (id_editorial)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+ALTER TABLE Libro owner to user_node;
+
+CREATE TABLE Detalle_Prestamos (
+  id_detalle_prestamos SERIAL,
+  id_prestamo INT NOT NULL,
+  id_libro INT NOT NULL,
+  fecha_devolucion DATE NOT NULL,
+  dias_mora INT NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  fecha_entrega DATE NOT NULL,
+  PRIMARY KEY (id_detalle_prestamos),
+  CONSTRAINT id_prestamo
+    FOREIGN KEY (id_detalle_prestamos)
+    REFERENCES  Prestamos (id_prestamos)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT id_libro
+    FOREIGN KEY (id_libro)
+    REFERENCES  Libro (id_libro)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+ALTER TABLE Detalle_Prestamos owner to user_node;
+
+CREATE TABLE Autor (
+  id_autor SERIAL,
+  nombre VARCHAR(200) NOT NULL,
+  apellido VARCHAR(200) NOT NULL,
+  nacionalidad VARCHAR(200) NOT NULL,
+  descripcion VARCHAR(200) NOT NULL,
+  PRIMARY KEY (id_autor));
+ALTER TABLE Autor owner to user_node;
+
+
+CREATE TABLE Autores_Libro (
+  id_autores_libro SERIAL,
+  id_autor INT NOT NULL,
+  id_libro INT NOT NULL,
+  PRIMARY KEY (id_autores_libro),
+  CONSTRAINT id_autor
+    FOREIGN KEY (id_autor)
+    REFERENCES  Autor (id_autor)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT id_libro
+    FOREIGN KEY (id_libro)
+    REFERENCES  Libro (id_libro)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+ALTER TABLE Autores_Libro owner to user_node;
+
+
