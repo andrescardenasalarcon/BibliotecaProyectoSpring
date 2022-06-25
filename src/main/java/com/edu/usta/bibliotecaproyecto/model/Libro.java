@@ -20,7 +20,7 @@ public class Libro implements Serializable {
     private String fechaPulbicacion;
 
     @Column(name = "codigo")
-    private String codigo;
+    private Integer codigo;
 
     @Column(name = "isbn")
     private String isbn;
@@ -32,7 +32,7 @@ public class Libro implements Serializable {
     public Libro() {
     }
 
-    public Libro(Long codLibro, String titulo, String fechaPulbicacion, String codigo, String isbn, Editorial idEditorial) {
+    public Libro(Long codLibro, String titulo, String fechaPulbicacion, Integer codigo, String isbn, Editorial idEditorial) {
         this.codLibro = codLibro;
         this.titulo = titulo;
         this.fechaPulbicacion = fechaPulbicacion;
@@ -65,11 +65,11 @@ public class Libro implements Serializable {
         this.fechaPulbicacion = fechaPulbicacion;
     }
 
-    public String getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

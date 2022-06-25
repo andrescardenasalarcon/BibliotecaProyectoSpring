@@ -2,6 +2,7 @@ package com.edu.usta.bibliotecaproyecto.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "prestamo")
@@ -10,11 +11,11 @@ public class Prestamo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_prestamos")
+    @Column(name = "id_prestamo")
     private Long codPrestamos;
 
     @Column(name = "fecha_inicio")
-    private String fechaInicio;
+    private Date fechaInicio;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -26,7 +27,7 @@ public class Prestamo implements Serializable {
     public Prestamo() {
     }
 
-    public Prestamo(Long codPrestamos, String fechaInicio, String descripcion, Cliente idCliente) {
+    public Prestamo(Long codPrestamos, Date fechaInicio, String descripcion, Cliente idCliente) {
         this.codPrestamos = codPrestamos;
         this.fechaInicio = fechaInicio;
         this.descripcion = descripcion;
@@ -41,11 +42,11 @@ public class Prestamo implements Serializable {
         this.codPrestamos = codPrestamos;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 

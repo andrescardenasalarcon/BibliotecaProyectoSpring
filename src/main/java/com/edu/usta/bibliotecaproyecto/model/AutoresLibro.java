@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @Table(name = "autores_libro")
-public class Autores_Libro implements Serializable {
+public class AutoresLibro implements Serializable {
     private static final long serialVersion = 1L;
 
     @Id
@@ -20,10 +20,10 @@ public class Autores_Libro implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Libro idLibro;
 
-    public Autores_Libro() {
+    public AutoresLibro() {
     }
 
-    public Autores_Libro(Long codAutoresLibro, Autor idAutor, Libro idLibro) {
+    public AutoresLibro(Long codAutoresLibro, Autor idAutor, Libro idLibro) {
         this.codAutoresLibro = codAutoresLibro;
         this.idAutor = idAutor;
         this.idLibro = idLibro;
