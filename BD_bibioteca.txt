@@ -5,7 +5,7 @@ CREATE TABLE Cliente(
   apellido VARCHAR(45) NOT NULL,
   direccion VARCHAR(45) NOT NULL,
   telefono VARCHAR(45) NOT NULL,
-  PRIMARY KEY (idCliente));
+  PRIMARY KEY (id_cliente));
 ALTER TABLE Cliente owner to user_node;
 
 CREATE TABLE Editorial (
@@ -17,14 +17,14 @@ CREATE TABLE Editorial (
 ALTER TABLE Editorial owner to user_node;
 
 CREATE TABLE Prestamo(
-  id_prestamos SERIAL,
+  id_prestamo SERIAL,
   fecha_inicio DATE NOT NULL,
   descripcion VARCHAR(200) NOT NULL,
   id_cliente INT NOT NULL,
-  PRIMARY KEY (id_prestamos),
+  PRIMARY KEY (id_prestamo),
   CONSTRAINT id_cliente
     FOREIGN KEY (id_cliente)
-    REFERENCES Cliente (idCliente)
+    REFERENCES Cliente (id_cliente)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 ALTER TABLE Prestamo owner to user_node;
@@ -32,7 +32,7 @@ ALTER TABLE Prestamo owner to user_node;
 CREATE TABLE Libro (
   id_libro SERIAL,
   titulo VARCHAR(200) NOT NULL,
-  fecha_publicacionl DATE NOT NULL,
+  fecha_publicacion DATE NOT NULL,
   codigo INT NOT NULL,
   isbn CHAR(10) NOT NULL,
   id_editorial INT NOT NULL,
@@ -54,8 +54,8 @@ CREATE TABLE Detalle_Prestamos (
   fecha_entrega DATE NOT NULL,
   PRIMARY KEY (id_detalle_prestamos),
   CONSTRAINT id_prestamo
-    FOREIGN KEY (id_detalle_prestamos)
-    REFERENCES  Prestamos (id_prestamos)
+    FOREIGN KEY (id_prestamo)
+    REFERENCES  Prestamo (id_prestamo)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT id_libro

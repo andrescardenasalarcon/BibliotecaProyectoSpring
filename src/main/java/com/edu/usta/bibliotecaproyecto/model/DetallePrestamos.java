@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "detalle_prestamos")
-public class Detalle_Prestamos implements Serializable {
+public class DetallePrestamos implements Serializable {
     private static final long serialVersion = 1L;
 
     @Id
@@ -34,10 +34,10 @@ public class Detalle_Prestamos implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Libro idLibro;
 
-    public Detalle_Prestamos() {
+    public DetallePrestamos() {
     }
 
-    public Detalle_Prestamos(Long codDetallePrestamos, Date fechaDevolucion, int diasMora, String descripcion, Date fechaEntrega, Prestamo idPrestamo, Libro idLibro) {
+    public DetallePrestamos(Long codDetallePrestamos, Date fechaDevolucion, int diasMora, String descripcion, Date fechaEntrega, Prestamo idPrestamo, Libro idLibro) {
         this.codDetallePrestamos = codDetallePrestamos;
         this.fechaDevolucion = fechaDevolucion;
         this.diasMora = diasMora;
